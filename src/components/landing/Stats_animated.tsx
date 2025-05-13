@@ -7,7 +7,17 @@ import { useEffect, useRef } from "react"
 import AnimatedSection, { AnimatedButton, StaggerContainer, StaggerItem } from "../ui/AnimatedComponents";
 
 // Create a counter component for numbers that animate
-function Counter({ from = 0, to, duration = 2, className = "" }) {
+function Counter({ 
+  from = 0, 
+  to, 
+  duration = 2, 
+  className = "" 
+}: { 
+  from?: number; 
+  to: number; 
+  duration?: number; 
+  className?: string 
+}) {
   const count = useMotionValue(from);
   const rounded = useTransform(count, latest => Math.round(latest));
   
@@ -55,12 +65,13 @@ export default function StatsSection() {
       {/* Parallax Background Image */}
       <motion.div 
         className="absolute inset-0 z-0"
-        style={{
-          y: useTransform(
-            useMotionValue(0),
-            [0, 1],
-            [0, 100]
-          )
+        animate={{ 
+          scale: [1, 1.05, 1],
+          transition: { 
+            duration: 20,
+            repeat: Infinity,
+            repeatType: "reverse"
+          }
         }}
       >
         <Image

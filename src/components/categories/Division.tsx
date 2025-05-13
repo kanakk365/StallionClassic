@@ -1,5 +1,26 @@
 import Image from "next/image";
 import Link from "next/link";
+import { motion } from "framer-motion";
+
+// Simple hover card component
+const HoverCard = ({
+  children,
+  scale = 1.05,
+}: {
+  children: React.ReactNode;
+  scale?: number;
+}) => {
+  return (
+    <motion.div
+      whileHover={{
+        scale: scale,
+        transition: { duration: 0.2 },
+      }}
+    >
+      {children}
+    </motion.div>
+  );
+};
 
 const divisions = [
   {
@@ -139,113 +160,273 @@ const divisions = [
   },
 ];
 
+// Animation variants for staggered animations
+const staggerContainer = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+    },
+  },
+};
+
+const staggerItem = {
+  hidden: { opacity: 0, y: 15 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.5,
+      ease: "easeOut",
+    },
+  },
+};
+
 export default function DivisionsSection() {
   return (
     <section className="py-8 pt-16 bg-white">
-      <div className="max-w-8xl mx-auto px-20">
-        {divisions.map((division) => (
-          <div key={division.id} className="mb-16 last:mb-0">
-            {/* Top heading with border */}
-            <div className="border border-[#dc4a26] rounded-md p-4 mb-6 bg-white">
-              <h2 className="text-2xl md:text-4xl py-2 text-center text-black font-[impact] ">
+      <div className="max-w-8xl mx-auto px-4 sm:px-8 md:px-12 lg:px-20">
+        {divisions.map((division, index) => (
+          <motion.div
+            key={division.id}
+            className="mb-16 last:mb-0"
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.1 * Math.min(index, 3) }}
+            viewport={{ once: true, margin: "-100px" }}
+          >
+            {" "}
+            <motion.div
+              className="border border-[#dc4a26] rounded-md p-2 sm:p-4 mb-6 bg-white"
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              viewport={{ once: true }}
+            >
+              <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl py-2 text-center text-black font-[impact]">
                 DISCOVER THE PERFECT DIVISION FOR YOUR BODYBUILDING JOURNEY
               </h2>
-            </div>
-
-            {/* Main content box with border */}
-            <div className="border border-[#dc4a26] rounded-md overflow-hidden p-1 ">
+            </motion.div>
+            <div className="border border-[#dc4a26] rounded-md overflow-hidden p-1">
               <div className="bg-black text-white rounded-md">
-                {/* Top image with title overlay */}
                 <div className="relative">
-                  <div className="h-[550px] relative">
+                  <motion.div
+                    className="h-[300px] sm:h-[400px] md:h-[500px] lg:h-[550px] relative"
+                    initial={{ opacity: 0.7, scale: 1.05 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 1.5 }}
+                    viewport={{ once: true }}
+                  >
                     <Image
                       src={division.image || "/placeholder.svg"}
                       alt={`${division.title} division`}
                       fill
                       className="object-cover object-center rounded-md"
                     />
-                  </div>{" "}
-                  {/* Title overlay on image */}
-                  <div className="absolute inset-0 flex flex-col items-center justify-center translate-y-32">
-                    <h2 className="text-5xl md:text-7xl font-[impact] text-white mb-2 ">
+                  </motion.div>{" "}
+                  <div className="absolute inset-0 flex flex-col items-center justify-center translate-y-12 sm:translate-y-20 md:translate-y-28 lg:translate-y-32">
+                    <motion.h2
+                      className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-[impact] text-white mb-2 text-center px-4"
+                      initial={{ opacity: 0, y: -20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{
+                        duration: 0.8,
+                        delay: 0.3,
+                      }}
+                      viewport={{ once: true }}
+                    >
                       {division.title}
-                    </h2>
-                    <p className="text-xl text-white font-[CreatoDisplay]">{division.subtitle}</p>
+                    </motion.h2>
+                    <motion.p
+                      className="text-base sm:text-lg md:text-xl text-white font-[CreatoDisplay] text-center px-4"
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{
+                        duration: 0.8,
+                        delay: 0.5,
+                      }}
+                      viewport={{ once: true }}
+                    >
+                      {division.subtitle}
+                    </motion.p>
                   </div>
                 </div>
 
-                {/* Content section with black background */}
-                <div className="py-16 px-8 bg-gradient-to-b from-[#090a05] to-black">
-                  {/* Key facts */}
-                  <div className="mb-16">
-                    <h3 className="text-3xl font-[impact] text-center mb-8">
-                      KEY FACTS
-                    </h3>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-5xl mx-auto">
-                      {division.keyFacts.map((fact, factIndex) => (
-                        <div
+                <div className="py-10 sm:py-12 md:py-16 px-4 sm:px-6 md:px-8 bg-gradient-to-b from-[#090a05] to-black">
+                  {" "}
+                  <motion.div
+                    className="mb-10 sm:mb-12 md:mb-16"
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    transition={{ duration: 0.5, delay: 0.3 }}
+                    viewport={{ once: true }}
+                  >
+                    {" "}
+                    <motion.h3
+                      className="text-xl sm:text-2xl md:text-3xl font-[impact] text-center mb-4 sm:mb-6 md:mb-8"
+                      initial={{ opacity: 0, y: -10 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.5 }}
+                      viewport={{ once: true }}
+                    >
+                      KEY FACTS{" "}
+                    </motion.h3>
+                    <motion.div
+                      className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4 max-w-5xl mx-auto"
+                      initial="hidden"
+                      whileInView="visible"
+                      viewport={{ once: true, margin: "-50px" }}
+                      variants={{
+                        hidden: { opacity: 0 },
+                        visible: {
+                          opacity: 1,
+                          transition: {
+                            staggerChildren: 0.1,
+                          },
+                        },
+                      }}
+                    >                      {division.keyFacts.map((fact, factIndex) => (
+                        <motion.div
                           key={factIndex}
-                          className="bg-[#1e1e1a] border border-[#dc4a26] rounded p-4 text-center text-lg font-[CreatoDisplay] flex items-center"
+                          variants={{
+                            hidden: { opacity: 0, y: 15 },
+                            visible: {
+                              opacity: 1,
+                              y: 0,
+                              transition: {
+                                duration: 0.5,
+                                ease: "easeOut",
+                              },
+                            },
+                          }}
                         >
-                          <p>{fact}</p>
-                        </div>
+                          <HoverCard>
+                            <div className="bg-[#1e1e1a] border border-[#dc4a26] rounded-lg px-4 text-center text-sm sm:text-base h-20 sm:h-20 flex items-center justify-center">
+                              {fact}
+                            </div>
+                          </HoverCard>
+                        </motion.div>
                       ))}
-                    </div>
-                  </div>
-
+                    </motion.div>
+                  </motion.div>
                   {/* Categories */}
-                  <div className="mb-16">
-                    <h3 className="text-2xl font-bold text-center mb-8">
-                      CATEGORIES
-                    </h3>
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-3 max-w-5xl mx-auto">
+                  <motion.div
+                    className="mb-10 sm:mb-12 md:mb-16"
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    transition={{ duration: 0.5, delay: 0.4 }}
+                    viewport={{ once: true }}
+                  >
+                    {" "}
+                    <motion.h3
+                      className="text-xl sm:text-2xl font-bold text-center mb-4 sm:mb-6 md:mb-8"
+                      initial={{ opacity: 0, y: -10 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.5 }}
+                      viewport={{ once: true }}
+                    >
+                      CATEGORIES{" "}
+                    </motion.h3>
+                    <motion.div
+                      className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-3 max-w-5xl mx-auto"
+                      initial="hidden"
+                      whileInView="visible"
+                      viewport={{ once: true, margin: "-50px" }}
+                      variants={staggerContainer}
+                    >
                       {division.categories
                         .slice(0, 8)
                         .map((category, catIndex) => (
-                          <div
-                            key={catIndex}
-                            className="border border-[#dc4a26] rounded px-4 py-2  bg-[#1f1f1b] text-center  font-[CreatoDisplay] "
-                          >
-                            {category}
-                          </div>
+                          <motion.div key={catIndex} variants={staggerItem}>
+                            <HoverCard>
+                              <div className="border border-[#dc4a26] rounded px-2 sm:px-4 py-2 bg-[#1f1f1b] text-center text-sm sm:text-base font-[CreatoDisplay]">
+                                {category}
+                              </div>
+                            </HoverCard>
+                          </motion.div>
                         ))}
-                    </div>
+                    </motion.div>
                     {division.categories.length > 8 && (
-                      <div className="flex justify-center mt-3">
-                        <div className="border border-[#dc4a26] rounded px-4 py-2  bg-[#1f1f1b] text-center  font-[CreatoDisplay]">
-                          {division.categories[8]}
-                        </div>
-                      </div>
+                      <motion.div
+                        className="flex justify-center mt-3"
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.5, delay: 0.6 }}
+                        viewport={{ once: true }}
+                      >
+                        <HoverCard>
+                          <div className="border border-[#dc4a26] rounded px-2 sm:px-4 py-2 bg-[#1f1f1b] text-center text-sm sm:text-base font-[CreatoDisplay]">
+                            {division.categories[8]}
+                          </div>
+                        </HoverCard>
+                      </motion.div>
                     )}
-                  </div>
-
+                  </motion.div>{" "}
                   {/* Register button */}
-                  <div className="text-center mb-8">
-                    <Link
-                      href="/register"
-                      className="inline-block bg-[#dc4a26] text-white px-8 py-3 font-bold tracking-wider hover:bg-opacity-90 transition-colors font-[CreatoDisplay] "
-                    >
-                      JOIN THE LEGACY, REGISTER NOW
-                    </Link>
-                  </div>
+                  <motion.div
+                    className="text-center mb-6 sm:mb-8"
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.6, delay: 0.4 }}
+                    viewport={{ once: true }}
+                    whileHover={{ scale: 1.02 }}
+                  >
+                    <HoverCard scale={1.1}>
+                      <Link
+                        href="/register"
+                        className="inline-block bg-[#dc4a26] text-white px-6 sm:px-8 py-2 sm:py-3 font-bold tracking-wider hover:bg-opacity-90 transition-colors font-[CreatoDisplay] text-sm sm:text-base"
+                      >
+                        JOIN THE LEGACY, REGISTER NOW
+                      </Link>
+                    </HoverCard>
+                  </motion.div>
                 </div>
               </div>
-
               {/* Bottom images */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-0">
+              <motion.div
+                className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-0"
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-50px" }}
+                variants={{
+                  hidden: { opacity: 0 },
+                  visible: {
+                    opacity: 1,
+                    transition: {
+                      staggerChildren: 0.15,
+                    },
+                  },
+                }}
+              >
                 {division.galleryImages.map((image, imgIndex) => (
-                  <div key={imgIndex} className="aspect-[4/3] relative">
+                  <motion.div
+                    key={imgIndex}
+                    className="aspect-[4/3] relative overflow-hidden"
+                    variants={{
+                      hidden: { opacity: 0, scale: 1.05 },
+                      visible: {
+                        opacity: 1,
+                        scale: 1,
+                        transition: {
+                          duration: 0.7,
+                          ease: "easeOut",
+                        },
+                      },
+                    }}
+                    whileHover={{ scale: 1.03 }}
+                  >
                     <Image
                       src={image || "/placeholder.svg"}
                       alt={`${division.title} pose ${imgIndex + 1}`}
                       fill
-                      className="object-cover"
+                      className="object-cover transition-transform duration-500"
                     />
-                  </div>
+                  </motion.div>
                 ))}
-              </div>
+              </motion.div>
             </div>
-          </div>
+          </motion.div>
         ))}
       </div>
     </section>
