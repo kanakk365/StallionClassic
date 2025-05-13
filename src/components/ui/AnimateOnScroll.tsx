@@ -1,7 +1,7 @@
 "use client";
 
-import { useRef, useCallback, useEffect, useState, ReactNode } from "react";
-import { motion, useInView, Variant } from "framer-motion";
+import { useRef,  ReactNode } from "react";
+import { motion, useInView, Variant, UseInViewOptions } from "framer-motion";
 
 interface AnimateOnScrollProps {
   children: ReactNode;
@@ -13,8 +13,8 @@ interface AnimateOnScrollProps {
   className?: string;
   delay?: number;
   duration?: number;
-  threshold?: number;
-  margin?: string;
+  amount?: number;
+  margin?: UseInViewOptions["margin"];
   once?: boolean;
 }
 
@@ -25,14 +25,14 @@ export default function AnimateOnScroll({
   className = "",
   delay = 0,
   duration = 0.6,
-  threshold = 0.1,
+  amount = 0.1,
   margin = "-50px 0px",
   once = true,
 }: AnimateOnScrollProps) {
   const ref = useRef(null);
   const isInView = useInView(ref, {
     once,
-    threshold,
+    amount,
     margin,
   });
 
@@ -123,18 +123,18 @@ export function AnimateInSequence({
   staggerDelay = 0.1,
   initialDelay = 0.1,
   className = "",
-  threshold = 0.1,
+  amount = 0.1,
   once = true,
 }: {
   children: ReactNode;
   staggerDelay?: number;
   initialDelay?: number;
   className?: string;
-  threshold?: number;
+  amount?: number;
   once?: boolean;
 }) {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once, threshold });
+  const isInView = useInView(ref, { once, amount });
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -192,7 +192,7 @@ export function RevealFromSide({
   once?: boolean;
 }) {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once, threshold: 0.2 });
+  const isInView = useInView(ref, { once, amount: 0.2 });
 
   // Direction-specific variants
   const variants = {

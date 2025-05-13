@@ -23,7 +23,7 @@ export default function AnimatedSection({
   animation = "fadeInUp",
 }: AnimatedSectionProps) {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, threshold });
+  const isInView = useInView(ref, { once: true, amount: threshold });
 
   // Default animation variants
   let defaultVariants: Variants;
@@ -132,7 +132,7 @@ export function AnimatedCard({
           ease: "easeOut" 
         } 
       }}
-      viewport={{ once: true, threshold: 0.2 }}
+      viewport={{ once: true, amount: 0.2 }}
       whileHover={{ 
         scale: 1.05, 
         y: -5, 
@@ -173,7 +173,7 @@ export function StaggerContainer({
       className={className}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, threshold: 0.1 }}
+      viewport={{ once: true, amount: 0.1 }}
       variants={containerVariants}
     >
       {children}
