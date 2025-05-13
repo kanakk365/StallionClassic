@@ -7,7 +7,7 @@ export default function HeroSection() {
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="/images/landing/hero/hero.png"
+          src="/images/events/hero/hero.png"
           alt="Bodybuilding background"
           fill
           className="object-cover brightness-50"
@@ -18,17 +18,17 @@ export default function HeroSection() {
       {/* Content */}
       <div className="relative z-10 container mx-auto px-4 pt-32 sm:pt-36 md:pt-40 lg:pt-48 pb-16 sm:pb-20 md:pb-24 lg:pb-32 flex flex-col items-center justify-center text-center min-h-screen">
         <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-normal leading-tight tracking-wider mb-4 sm:mb-6 font-[impact]">
-          DEFY LIMITS. DOMINATE THE STAGE.
+          WHERE FUTURE CHAMPIONS EMERGE
         </h1>
 
         <div className="flex items-center justify-center w-full mb-4 sm:mb-6">
           <div className="h-1 bg-[#dc4a26] w-12 sm:w-20 md:w-32 lg:w-48"></div>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl  mx-2 sm:mx-4 md:mx-6 lg:mx-8 font-[impact]">STALLION CLASSIC</h2>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl mx-2 sm:mx-4 md:mx-6 lg:mx-8 font-[impact]">WILL YOU BE THERE?</h2>
           <div className="h-1 bg-[#dc4a26] w-12 sm:w-20 md:w-32 lg:w-48"></div>
         </div>
 
         <p className="text-base sm:text-lg md:text-xl lg:text-2xl mb-8 sm:mb-10 md:mb-12 max-w-xl sm:max-w-2xl md:max-w-3xl lg:max-w-4xl mx-auto font-[CreatoDisplay]">
-          The Ultimate Stage For Bodybuilding, Men&apos;s Physique & Classic Physique Champions
+          Experience the raw intensity of judging day, the glamour of finals night, and the chaos of the afterparty
         </p>
 
         <Link
