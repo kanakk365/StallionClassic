@@ -33,11 +33,11 @@ const PopupNotification = () => {
         <motion.div          initial={{ opacity: 0, y: 50, scale: 0.9 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           exit={{ opacity: 0, y: 20, scale: 0.9 }}
-          transition={{ duration: 0.3 }}          
-          className="fixed bottom-16 md:bottom-5 right-5 md:right-5 backdrop-blur-md bg-black/30 border border-red-300 shadow-xl rounded-3xl p-4 sm:p-6 z-50 w-[90%] sm:w-auto sm:max-w-md mx-auto sm:mx-0"
+          transition={{ duration: 0.3 }}            className="fixed bottom-16 md:bottom-5 right-5 md:right-5 backdrop-blur-md bg-black/30 border shadow-xl rounded-3xl p-4 sm:p-6 z-50 w-[90%] sm:w-auto sm:max-w-md mx-auto sm:mx-0"
           style={{
             borderRadius: "28px",
             boxShadow: "0 8px 32px rgba(0, 0, 0, 0.1)",
+            borderColor: "#dc4a26",
           }}
         >
           <button
@@ -64,10 +64,10 @@ const PopupNotification = () => {
             </h3>
             <p className="text-white mb-4 sm:mb-6 text-base sm:text-lg">
               Step Into the Spotlight of Stallion Classic
-            </p>
-            <Link
+            </p>            <Link
               href="/events"
-              className="inline-block bg-red-500 text-white font-bold py-2 sm:py-3 px-6 sm:px-8 rounded-md hover:bg-red-600 transition-all duration-300 uppercase tracking-wider text-sm sm:text-base"
+              className="inline-block text-white font-bold py-2 sm:py-3 px-6 sm:px-8 rounded-md hover:opacity-90 transition-all duration-300 uppercase tracking-wider text-sm sm:text-base"
+              style={{ backgroundColor: "#dc4a26" }}
             >
               Register Now
             </Link>
