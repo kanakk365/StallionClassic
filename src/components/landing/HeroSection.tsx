@@ -5,8 +5,7 @@ import Link from "next/link"
 import { motion } from "framer-motion";
 import { AnimatedButton } from "../ui/AnimatedComponents";
 
-export default function HeroSection() {  return (
-    <main className="relative min-h-screen">
+export default function HeroSection() {  return (    <main className="relative min-h-screen text-white">
       {/* Parallax Background Image */}
       <motion.div 
         className="absolute inset-0 z-0"

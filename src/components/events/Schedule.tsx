@@ -90,12 +90,12 @@ export default function ScheduleSection() {
         
         <AnimatedSection className="w-full flex flex-col sm:flex-row justify-center items-center mt-8 sm:mt-10 gap-4 sm:gap-8 md:gap-16" animation="fadeInUp" delay={0.5}>
           <AnimatedButton>
-            <Link href="/register" className="block bg-[#dc4a26] py-1 px-8 sm:px-10 font-[CreatoDisplay] text-lg sm:text-xl cursor-pointer w-full sm:w-auto">
+            <Link href="/register" className="block text-white bg-[#dc4a26] py-1 px-8 sm:px-10 font-[CreatoDisplay] text-lg sm:text-xl cursor-pointer w-full sm:w-auto">
               Register Now
             </Link>
           </AnimatedButton>
           <AnimatedButton>
-            <Link href="/book" className="block bg-[#212121] py-1 px-10 sm:px-12 font-[CreatoDisplay] text-lg sm:text-xl cursor-pointer w-full sm:w-auto mt-3 sm:mt-0">
+            <Link href="/book" className="block text-white bg-[#212121] py-1 px-10 sm:px-12 font-[CreatoDisplay] text-lg sm:text-xl cursor-pointer w-full sm:w-auto mt-3 sm:mt-0">
               Book Now
             </Link>
           </AnimatedButton>
