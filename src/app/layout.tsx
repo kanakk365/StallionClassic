@@ -15,6 +15,9 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Stallion Classic - Bodybuilding Championship",
   description: "The Ultimate Stage For Bodybuilding, Men's Physique & Classic Physique Champions",
+  icons: {
+    icon: '/favicon.ico',
+  },
 };
 
 export default function RootLayout({
@@ -26,6 +29,7 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+        <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="preload" href="/fonts/CreatoDisplay.otf" as="font" type="font/otf" crossOrigin="anonymous" />
         <link rel="preload" href="/fonts/impact.ttf" as="font" type="font/ttf" crossOrigin="anonymous" />
       </head>
